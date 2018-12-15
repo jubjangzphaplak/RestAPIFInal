@@ -35,10 +35,7 @@ app.get('/api/json' , function (req, res) {
     });
 //products
 app.get('/api/products/',db.getAllProducts);
-app.get('/api/products/:id', db.getProductByID);
-app.post('/api/products/', db.insertProduct);
-app.put('/api/products/:id', db.updateProduct);
-app.delete('/api/products/:id', db.deleteProduct);
+
 
 
 
