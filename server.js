@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({
 
 
 app.get('/', function (req, res) {
-    res.send('Express is running');
+    res.send('Final Exam / Products');
 });
 
 
@@ -44,7 +44,7 @@ app.delete('/api/products/:id', db.deleteProduct);
 
 
 
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 8000;
 app.listen(port, function () {
     console.log('App is running on http://localhost:' + port);
 });

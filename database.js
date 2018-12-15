@@ -41,6 +41,70 @@ function getProductByID(req, res) {
         })
 }
 
+function insertProduct(req, res) {
+    db.none('insert into products(id, title, price, created_at, tags)' +
+        'values(${id}, ${title}, ${price}, ${created_at}, ${tags})',
+        req.body)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    message: 'Inserted one product'
+                });
+        })
+        .catch(function (error) {
+            res.status(500)
+                .json({
+                    status: 'failed',
+                    message: 'Failed to retrieved products id:' + req.params.id
+                });
+            console.log('ERROR:', error)
+        })
+}
+
+
+function updateProduct(req, res) {
+    db.none('update products set id=${id},title=${title},price=${price},tags=${tags} ' +
+        'where id=' + req.params.id, req.body)
+
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    message: 'update one product'
+                });
+        })
+        .catch(function (error) {
+            res.status(500)
+                .json({
+                    status: 'failed',
+                    message: 'Failed to retrieved products id:' + req.params.id
+                });
+            console.log('ERROR:', error)
+        })
+}
+
+function deleteProduct(req, res) {
+    db.none('delete from products where id=' + req.params.id)
+
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    message: 'DELETE one product'
+                });
+        })
+        .catch(function (error) {
+            res.status(500)
+                .json({
+                    status: 'failed',
+                    message: 'Failed to retrieved products id:' + req.params.id
+                });
+            console.log('ERROR:', error)
+        })
+}
+
+
 
 
 
@@ -48,6 +112,10 @@ function getProductByID(req, res) {
 module.exports = {
     getAllProducts,
     getProductByID,
+    insertProduct,
+    updateProduct,
+    deleteProduct
+
    
 
 
